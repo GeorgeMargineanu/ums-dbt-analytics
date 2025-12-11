@@ -1,0 +1,59 @@
+name: "dbt heartbeat every 5 minutes"
+
+on:
+  schedule:
+    # Every 5 minutes (GitHub minimum interval)
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}   # allow manual run from the Actions tab
+
+jobs:
+  dbt-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt-bigquery
+        run: |
+          pip install --no-cache-dir dbt-bigquery==1.10.3
+
+      - name: Write service account key to file
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo "$GOOGLE_SERVICE_ACCOUNT_KEY" > $HOME/gcp-key.json
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp-key.json" >> $GITHUB_ENV
+
+      - name: Create profiles.yml for CI
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << 'EOF'
+          analytics:
+            target: ci
+            outputs:
+              ci:
+                type: bigquery
+                method: service-account
+                keyfile: /home/runner/gcp-key.json
+                project: ums-adreal-471711
+                dataset: test
+                location: EU
+                threads: 2
+                priority: interactive
+                job_execution_timeout_seconds: 300
+                job_retries: 1
+          EOF
+
+      - name: Debug dbt connection (optional)
+        run: |
+          dbt debug --target ci
+
+      - name: Run heartbeat model
+        run: |
+          dbt run --target ci --select heartbeat_inserts
