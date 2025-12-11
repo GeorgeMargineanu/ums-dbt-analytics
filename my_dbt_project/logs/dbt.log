@@ -1,0 +1,30 @@
+[0m17:09:17.835287 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AE8C770EC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AE8E4CBED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AE8E4CBB10>]}
+
+
+============================== 17:09:17.843683 | e9923451-bf15-4e06-b38d-ba29568eaed0 ==============================
+[0m17:09:17.843683 [info ] [MainThread]: Running with dbt=1.11.0-rc3
+[0m17:09:17.845724 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\george.margineanu\\.dbt', 'indirect_selection': 'eager', 'use_colors': 'True', 'invocation_command': 'dbt init', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m17:09:17.891563 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\george.margineanu\.dbt
+[0m17:10:28.109685 [debug] [MainThread]: Starter project path: C:\Users\george.margineanu\Documents\mini_projs\dbt\dbt-venv\Lib\site-packages\dbt\include\starter_project
+[0m17:10:28.198033 [info ] [MainThread]: 
+Your new dbt project "analytics" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m17:10:28.199550 [info ] [MainThread]: Setting up your profile.
+[0m17:12:29.982977 [info ] [MainThread]: Profile analytics written to C:\Users\george.margineanu\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m17:12:29.987234 [debug] [MainThread]: Command `dbt init` succeeded at 17:12:29.986807 after 192.51 seconds
+[0m17:12:29.988447 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEBCEA4B00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AE8E572690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001AEBCE167A0>]}
+[0m17:12:29.989384 [debug] [MainThread]: Flushing usage events
+[0m17:12:31.459433 [debug] [MainThread]: An error was encountered while trying to flush usage events
